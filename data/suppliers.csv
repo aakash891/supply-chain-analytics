@@ -1,0 +1,29 @@
+supplier_id,supplier_name,region,base_lead_time_days,reliability_score
+SUP-001,Global Industries 1,Mexico,11,0.87
+SUP-002,Summit Manufacturing 2,Vietnam,27,0.86
+SUP-003,Nova Tech 3,USA,3,0.88
+SUP-004,Global Industries 4,USA,5,0.99
+SUP-005,Pacific Electronics 5,India,26,0.84
+SUP-006,Apex Tech 6,USA,8,0.97
+SUP-007,Summit Industries 7,Taiwan,22,0.78
+SUP-008,Summit Industries 8,India,26,0.88
+SUP-009,Apex Electronics 9,South Korea,22,0.91
+SUP-010,Prime Manufacturing 10,Taiwan,21,0.94
+SUP-011,Apex Components 11,India,27,0.95
+SUP-012,Pacific Tech 12,Taiwan,21,0.96
+SUP-013,Prime Industries 13,China,26,0.88
+SUP-014,Nova Tech 14,South Korea,21,0.87
+SUP-015,Apex Manufacturing 15,Germany,15,0.96
+SUP-016,Nova Components 16,Vietnam,23,0.89
+SUP-017,Global Manufacturing 17,South Korea,22,0.81
+SUP-018,United Electronics 18,Vietnam,24,0.82
+SUP-019,Prime Tech 19,USA,8,0.84
+SUP-020,Sino Industries 20,South Korea,17,0.93
+SUP-021,Pacific Industries 21,Taiwan,24,0.91
+SUP-022,Summit Components 22,Vietnam,28,0.95
+SUP-023,Global Tech 23,Mexico,12,0.87
+SUP-024,Nova Tech 24,USA,7,0.91
+SUP-025,Summit Industries 25,India,24,0.94
+SUP-026,Prime Electronics 26,South Korea,21,0.88
+SUP-027,Sino Manufacturing 27,Vietnam,24,0.93
+SUP-028,Nova Electronics 28,Germany,16,0.85

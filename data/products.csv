@@ -1,0 +1,23 @@
+product_id,product_name,category,unit_cost,supplier_id,reorder_point,reorder_qty,base_daily_demand,unit_price
+PRD-0001,Wireless Earbuds Pro v1,Audio,9.04,SUP-026,211,977,9.4,21.24
+PRD-0002,Noise-Cancelling Headphones v1,Audio,32.06,SUP-002,239,521,13.1,83.94
+PRD-0003,Noise-Cancelling Headphones v2,Audio,28.98,SUP-026,144,591,12.1,66.86
+PRD-0004,Bluetooth Speaker Mini v1,Audio,24.26,SUP-005,94,674,17.4,75.77
+PRD-0005,Soundbar 2.1 v1,Audio,54.88,SUP-006,198,765,17.5,120.6
+PRD-0006,Fitness Tracker X v1,Wearables,47.61,SUP-021,201,1031,6.4,97.79
+PRD-0007,Smartwatch Series 3 v1,Wearables,9.4,SUP-015,233,502,5.2,23.71
+PRD-0008,Sleep Ring v1,Wearables,21.13,SUP-003,178,837,15.7,67.42
+PRD-0009,65W GaN Charger v1,Charging,46.48,SUP-002,202,930,12.0,142.69
+PRD-0010,Wireless Charging Pad v1,Charging,36.71,SUP-003,190,902,8.7,106.4
+PRD-0011,Power Bank 20K v1,Charging,6.33,SUP-014,163,550,4.3,19.43
+PRD-0012,Smart Plug v1,Smart Home,9.79,SUP-002,179,1034,16.8,30.08
+PRD-0013,Video Doorbell v1,Smart Home,36.54,SUP-021,138,889,2.4,95.83
+PRD-0014,Smart Bulb 4-Pack v1,Smart Home,57.68,SUP-016,161,773,3.3,137.23
+PRD-0015,Smart Bulb 4-Pack v2,Smart Home,31.25,SUP-001,194,792,17.0,91.45
+PRD-0016,USB-C Cable 2m v1,Accessories,30.52,SUP-022,217,613,7.3,85.27
+PRD-0017,Laptop Stand v1,Accessories,28.58,SUP-026,128,417,15.2,69.97
+PRD-0018,Laptop Stand v2,Accessories,54.19,SUP-023,103,641,3.7,114.52
+PRD-0019,Phone Case Armor v1,Accessories,41.65,SUP-012,127,595,13.6,120.62
+PRD-0020,Phone Case Armor v2,Accessories,47.04,SUP-008,134,486,16.7,108.9
+PRD-0021,Screen Protector 3-Pack v1,Accessories,6.1,SUP-014,104,843,7.9,19.06
+PRD-0022,Screen Protector 3-Pack v2,Accessories,50.47,SUP-022,217,1170,17.2,115.53

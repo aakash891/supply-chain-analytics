@@ -1,0 +1,6 @@
+warehouse_id,warehouse_name,region
+WH-EAST,East Coast DC,North America
+WH-WEST,West Coast DC,North America
+WH-CENTRAL,Central DC,North America
+WH-EU,EU Fulfillment Center,Europe
+WH-APAC,APAC Fulfillment Center,Asia Pacific
