@@ -1,4 +1,3 @@
-
 import pandas as pd
 import streamlit as st
 import plotly.express as px
@@ -12,9 +11,6 @@ st.set_page_config(page_title="Ops Insights Dashboard", layout="wide", page_icon
 
 # =======================================================================
 # DESIGN TOKENS
-# A small, deliberate palette: deep slate-navy for structure/text, a
-# single blue accent for primary data, and semantic colors (teal/amber/
-# red) reserved ONLY for good/caution/risk signals -- never decoration.
 # =======================================================================
 NAVY = "#0F172A"
 NAVY_SOFT = "#1E293B"
@@ -201,7 +197,7 @@ html, body, [class*="css"] {{
 }}
 .insight-rec b {{ color: {ACCENT}; }}
 
-/* ---- Tabs: pill-style segmented control, not default underline tabs ---- */
+/* ---- Tabs ---- */
 .stTabs [data-baseweb="tab-list"] {{
     gap: 6px;
     background: {CARD};
@@ -258,8 +254,6 @@ html, body, [class*="css"] {{
     text-transform: uppercase;
     letter-spacing: 0.03em;
 }}
-/* Input boxes (selectbox, date input) need their own dark background --
-   without this, text stays light-on-light-default-white and disappears. */
 [data-testid="stSidebar"] [data-baseweb="select"] > div,
 [data-testid="stSidebar"] [data-baseweb="base-input"],
 [data-testid="stSidebar"] input {{
@@ -274,8 +268,6 @@ html, body, [class*="css"] {{
 [data-testid="stSidebar"] svg {{
     fill: #94A3B8 !important;
 }}
-/* Dropdown menu popover renders outside the sidebar DOM node, in a portal --
-   style it globally so it isn't caught by the sidebar-only selectors above. */
 [data-baseweb="popover"] [data-baseweb="menu"] {{
     background-color: {NAVY_SOFT} !important;
 }}
@@ -304,9 +296,6 @@ def kpi_card(label, value, delta=None, delta_tone="neutral", accent=ACCENT):
     """, unsafe_allow_html=True)
 
 
-# ---------------------------------------------------------------------
-# Load data
-# ---------------------------------------------------------------------
 @st.cache_data
 def load_data():
     daily_ops = pd.read_csv("data/daily_ops.csv", parse_dates=["date"])
@@ -319,9 +308,6 @@ def load_data():
 
 daily_ops, purchase_orders, products, suppliers, warehouses = load_data()
 
-# ---------------------------------------------------------------------
-# Sidebar filters
-# ---------------------------------------------------------------------
 st.sidebar.markdown("### Filters")
 
 date_min, date_max = daily_ops["date"].min(), daily_ops["date"].max()
@@ -338,9 +324,6 @@ selected_wh = st.sidebar.selectbox("Warehouse", wh_options)
 cat_options = ["All"] + sorted(products["category"].unique().tolist())
 selected_cat = st.sidebar.selectbox("Product category", cat_options)
 
-# ---------------------------------------------------------------------
-# Apply filters
-# ---------------------------------------------------------------------
 d = daily_ops[(daily_ops["date"] >= start_date) & (daily_ops["date"] <= end_date)]
 po = purchase_orders[(purchase_orders["order_date"] >= start_date) & (purchase_orders["order_date"] <= end_date)]
 
@@ -353,9 +336,6 @@ if selected_cat != "All":
     d = d[d["product_id"].isin(cat_products)]
     po = po[po["product_id"].isin(cat_products)]
 
-# ---------------------------------------------------------------------
-# Header
-# ---------------------------------------------------------------------
 st.markdown(f"""
 <div class="dash-header">
     <div class="eyebrow">Consumer Electronics Distribution </div>
@@ -370,39 +350,32 @@ if d.empty:
     st.stop()
 
 # ---------------------------------------------------------------------
-# KPI row
+# KPI row -- 3 metrics (Inventory Turnover removed per request)
 # ---------------------------------------------------------------------
 fr = order_fulfillment_rate(d)
 sr = stockout_rate(d)
 lt = average_lead_time(po) if len(po) else None
-turnover = inventory_turnover(d, products)
 
 fr_val = fr['fulfillment_rate'].iloc[0]
 sr_val = sr['stockout_rate'].iloc[0]
 
-c1, c2, c3, c4 = st.columns(4)
+c1, c2, c3 = st.columns(3)
 with c1:
     kpi_card("Order Fulfillment Rate", f"{fr_val*100:.1f}%",
               "Target: 95%+", "good" if fr_val >= 0.9 else "bad", ACCENT)
 with c2:
-    kpi_card("Inventory Turnover", f"{turnover['inventory_turnover'].iloc[0]:.1f}x",
-              "Annualized", "neutral", TEAL)
-with c3:
     if lt is not None:
         delay = lt['avg_delay_days'].iloc[0]
         kpi_card("Avg Lead Time", f"{lt['avg_lead_time_days'].iloc[0]:.0f} days",
                   f"{delay:+.1f} vs promised", "bad" if delay > 0 else "good", AMBER)
     else:
         kpi_card("Avg Lead Time", "n/a", None)
-with c4:
+with c3:
     kpi_card("Stock-out Rate", f"{sr_val*100:.1f}%",
               "of warehouse-product-days", "bad" if sr_val > 0.05 else "good", RED)
 
 st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
 
-# ---------------------------------------------------------------------
-# Tabs
-# ---------------------------------------------------------------------
 tab0, tab1, tab2, tab3, tab4 = st.tabs(
     ["Executive Insights", "Trends", "Warehouse Efficiency", "Supplier Performance", "Data"]
 )
